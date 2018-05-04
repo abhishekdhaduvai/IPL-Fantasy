@@ -1,10 +1,21 @@
 import React from 'react';
+import moment from 'moment';
+import 'countdown';
+import 'moment-countdown';
 
 class MatchCard extends React.Component {
   render() {
     const { match, user } = this.props;
     return (
       <div className='match-card'>
+        {match.timeUTC - Date.now() > 0 &&
+          <div className='lock-time'>
+            <div className='lock-time-msg'>Selection for this match will close in</div>
+            <div className='time-remaining'>
+              {moment(match.timeUTC).countdown().toString().split('and')[0].trim()}
+            </div>
+          </div>
+        }
         <div
           className={
             // match.bet === 'team1' ? 'bet homeTeam': 'homeTeam'

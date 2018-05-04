@@ -21,13 +21,14 @@ const getSchedule = (teams, matches, upcomingMatches) => {
 		data = res.data.slice(16,-2)
 		data = JSON.parse(data);
 		data.schedule.forEach(match => {
+			let IST = moment.tz(match.matchDate, 'Asia/Kolkata');
+			match.timeUTC = IST.utc().valueOf();
 			if(!match.matchStatus) {
 				/*
 				 * Convert IST to UTC time.
 				 * If current UTC time is less than the match date (in UTC), the match has already started
 				 * and it should not be displayed in the schedule.
 				 */
-				let IST = moment.tz(match.matchDate, 'Asia/Kolkata');
 				if(IST.utc() > moment())
 					upcomingMatches.push(match);
 			}

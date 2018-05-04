@@ -13,10 +13,6 @@ class BrandingBand extends React.Component {
           <Link to='/schedule'><div className='link'>Schedule</div></Link>
           <div className='link'>Results</div>
         </div>
-        {/* <div style={styles.divider}></div>
-        <div style={styles.banner}>
-          <h2 style={styles.text}>{this.props.screen}</h2>
-        </div> */}
       </div>
     )
   }

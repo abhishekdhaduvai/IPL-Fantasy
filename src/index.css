@@ -62,7 +62,6 @@ th {
 }
 
 th.name {
-  width: 200px;
   padding-left: 0.5em;
 }
 
@@ -71,16 +70,16 @@ th.form {
   text-align: center;
 }
 
-td.id {
+th.id, td.id {
   width: 62px;
   text-align: center;
 }
 
-td.name {
+th.name, td.name {
   width: 200px;
 }
 
-td.points {
+th.points, td.points {
   width: 57px;
   text-align: center;
 }
@@ -114,7 +113,7 @@ thead > tr, tbody {
 }
 
 .match-card {
-  /* padding: 1em; */
+  position: relative;
   margin: 1em;
   margin-bottom: 0.5em;
   box-shadow: 2px 2px 1rem 1px rgba(120, 120, 120, 0.2);
@@ -123,16 +122,47 @@ thead > tr, tbody {
   justify-content: center;
 }
 
+.lock-time {
+  position: absolute;
+  left: 1em;
+  align-self: center;
+  /* width: 10em; */
+}
+
+.lock-time-msg {
+  font-size: small;
+}
+
+.lock-time > .time-remaining {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1000) {
+  .lock-time {
+    width: 10em;
+  }
+  .lock-time-msg {
+    font-size: x-small;
+  }
+
+  .lock-time > .time-remaining {
+    font-weight: bold;
+    font-size: small;
+  }
+}
+
 .team1 {
   width: 15em;
   text-align: right;
   font-weight: bold;
+  font-size: larger;
 }
 
 .team2 {
   width: 15em;
   text-align: left;
   font-weight: bold;
+  font-size: larger;
 }
 
 .team1, .team2, .vs {
