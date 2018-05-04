@@ -10,6 +10,7 @@ const axios = require('axios');
 const moment = require('moment-timezone');
 const User = require('./User');
 const schedule = require('./schedule');
+const points = require('./points');
 
 const credentials = require('./credentials');
 const invitedUsers = require('./invitedUsers');
@@ -54,10 +55,7 @@ function(request, accessToken, refreshToken, profile, done) {
 		id: profile.id,
 		email: profile.email,
 		name: profile.displayName,
-		bets: {
-			7894: {team: 'team1', result: 'loss'},
-			7895: {team: 'team1', result: 'win'}
-		}
+		bets: {}
 	}
 	/*
 	 * Create the user if they don't already exist.
@@ -177,6 +175,13 @@ app.get('/finished-matches', (req, res) => {
 app.get('/upcoming-matches', (req, res) => {
 	console.log(`Req from ${req.user.id}`);
 	res.send(upcomingMatches);
+});
+
+app.get('/table', (req, res) => {
+	points.calculatePoints(matches);
+	console.log(User.users);
+	res.send(User.users);
+	User.reset();
 });
 
 app.get('/teams', (req, res) => {

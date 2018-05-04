@@ -2,6 +2,13 @@ const users = {
 
 }
 
+const reset = () => {
+  Object.keys(users).forEach(id => {
+    users[id].points = 0;
+    users[id].form = [];
+  })
+}
+
 const create = (user) => {
   users[user.id] = {};
   users[user.id].name = user.name;
@@ -28,4 +35,5 @@ module.exports = {
   find,
   addBet,
   users,
+  reset
 }

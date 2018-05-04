@@ -6,30 +6,27 @@ import PointsTable from '../web-components/PointsTable';
 
 class Dashboard extends React.Component {
 
-  render(){
-    const table = [
-      {
-        name: 'Abhishek Dhaduvai',
-        points: 12,
-        form: ['W', 'W', 'W', 'L', 'W']
-      },
-      {
-        name: 'Rahul Sakpal',
-        points: 12,
-        form: ['W', 'L', 'W', 'L', 'W']
-      },
-      {
-        name: 'Hemanth Jagarlamudi',
-        points: 10,
-        form: ['L', 'L', 'W', 'L', 'W']
-      },
-      {
-        name: 'KXIP',
-        points: 10,
-        form: ['W', 'W', 'L', 'L', 'L']
-      },
-    ]
-    const { schedule, logos } = this.props;
+  state = {
+    table: [],
+  }
+
+  componentDidMount() {
+    axios.get('/table')
+    .then(res => {
+      let temp = [];
+      Object.keys(res.data).forEach(id => {
+        temp.push(res.data[id]);
+      });
+      this.setState({ table: temp });
+    })
+    .catch(err => {
+      console.log('err ', err);
+    });
+  }
+
+  render() {
+    const { table } = this.state;
+    console.log(this.state);
     return (
       <div style={styles.container}>
         <BrandingBand screen='Home' />
