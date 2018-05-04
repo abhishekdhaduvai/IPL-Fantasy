@@ -14,7 +14,10 @@ const params = {
 	ReturnConsumedCapacity: 'TOTAL'
 };
 
-const invitedUsers = ['abhishek.dhaduvai1@gmail.com'];
+const invitedUsers = [
+  'abhishek.dhaduvai1@gmail.com',
+  'ad6xc@mst.edu'
+];
 
 // TODO: use DynamoDB to get invited users instead of hardcoding here.
 

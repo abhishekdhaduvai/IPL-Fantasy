@@ -11,20 +11,33 @@ class App extends Component {
 
   state = {
     error: '',
-    schedule: []
+    schedule: [],
+    user: undefined
   }
 
   componentDidMount() {
+    this.getUpcomingMatches();
+    this.getUserInfo();
+  }
+
+  getUpcomingMatches = () => {
     axios.get('/upcoming-matches')
     .then(res => {
-      this.setState({
-        schedule: res.data,
-        error: ''
-      });
+      this.setState({ schedule: res.data });
     })
     .catch(err => {
       this.setState({ error: 'Error getting the schedule'});
       console.log(err);
+    });
+  }
+
+  getUserInfo = () => {
+    axios.get('/me')
+    .then(res => {
+      this.setState({ user: res.data });
+    })
+    .catch(err => {
+      this.setState({error: 'Error getting your info'});
     });
   }
 
@@ -41,20 +54,32 @@ class App extends Component {
         })
       }
     });
+    axios.post('/bet', {
+      match: match.matchId.id,
+      bet: team
+    })
+    .then(res => {
+      this.getUserInfo();
+    })
+    .catch(err => {
+      console.log('err ', err);
+      this.setState({ error: err.message});
+    })
   }
 
   render() {
-    const { error, schedule } = this.state;
+    const { error, schedule, user } = this.state;
     return (
       <div style={styles.container}>
         <Switch>
           <Route exact path="/home" render={() => {
             return <Dashboard schedule={schedule} />
           }} />
-          <Route exact path="/schedule" render={() => {
-            return <Schedule schedule={schedule} bet={this.bet} />
-          }} />
-          <Route exact path="/about" component={About} />
+          {user !== undefined &&
+            <Route exact path="/schedule" render={() => {
+              return <Schedule schedule={schedule} bet={this.bet} user={user} />
+            }} />
+          }
           <Route path="/" render={() => {
             return <Redirect to="/home" />
           }}/>

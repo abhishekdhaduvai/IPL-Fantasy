@@ -5,17 +5,17 @@ import MatchCard from '../web-components/MatchCard';
 class About extends React.Component {
 
   render(){
-    console.log(this.props);
-    const { schedule, logos } = this.props;
+    const { schedule, logos, user } = this.props;
     return (
       <div style={styles.container}>
         <BrandingBand screen='Schedule' />
         {
-          this.props.schedule.map(match => (
+          schedule.map(match => (
             <MatchCard
               key={match.matchId.id}
               match={match}
               bet={this.props.bet}
+              user={user}
             />
           ))
         }

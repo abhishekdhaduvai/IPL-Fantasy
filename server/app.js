@@ -179,6 +179,18 @@ app.get('/teams', (req, res) => {
 	res.send(teams);
 });
 
+app.get('/me', (req, res) => {
+	res.send(User.users[req.user.id]);
+});
+
+app.post('/bet', (req, res) => {
+	console.log(`Bet from ${req.user.email} on match ${req.body.match} for ${req.body.bet}`);
+	req.body.userId = req.user.id;
+	User.addBet(req.body);
+	console.log(User.users);
+	res.send('Done.');
+});
+
 app.use('/no-invitation/', function (req, res, next) {
 	next();
 }, function (req, res) {
