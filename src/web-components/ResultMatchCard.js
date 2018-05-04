@@ -5,25 +5,6 @@ import 'moment-countdown';
 
 class ResultMatchCard extends React.Component {
 
-  result = (match, user) => {
-    if(user.bets[match.matchId.id] === 'team1') {
-      if(match.matchStatus.outcome === 'A'){
-        return {
-          message: `You bet on ${match.team1.team.shortName}`,
-          team1: 'win team'
-        };
-      }
-      else {
-        return {
-          message: `You bet on ${match.team1.team.shortName}`,
-          team1: 'lose team'
-        };
-        return 'lose team';
-      }
-    }
-    return 'team';
-  }
-
   render() {
     const { match, user } = this.props;
     console.log(user.bets[match.matchId.id]);
@@ -33,7 +14,13 @@ class ResultMatchCard extends React.Component {
         <div className='card-left'>
           <div className='.row1'><strong>{match.matchStatus.text}</strong></div>
           <div className='row2'>
-            You bet on <strong>{user.bets[match.matchId.id] === 'team1' ? match.team1.team.shortName : match.team2.team.shortName}</strong>
+            {
+              user.bets[match.matchId.id] === undefined ?
+              <span>You did not bet on this match</span> :
+              user.bets[match.matchId.id] === 'team1' ?
+              <span>You bet on <strong>{match.team1.team.shortName}</strong></span> :
+              <span>You bet on <strong>{match.team2.team.shortName}</strong></span>
+            }
           </div>
         </div>
 
