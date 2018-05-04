@@ -9,16 +9,15 @@ class MatchCard extends React.Component {
     return (
       <div className='match-card'>
         {match.timeUTC - Date.now() > 0 &&
-          <div className='lock-time'>
-            <div className='lock-time-msg'>Selection for this match will close in</div>
-            <div className='time-remaining'>
-              {moment(match.timeUTC).countdown().toString().split('and')[0].trim()}
+          <div className='card-left'>
+            <div className='row1'>Selection for this match will close in</div>
+            <div className='row2'>
+              <strong>{moment(match.timeUTC).countdown().toString().split('and')[0].trim()}</strong>
             </div>
           </div>
         }
         <div
           className={
-            // match.bet === 'team1' ? 'bet homeTeam': 'homeTeam'
             user.bets[match.matchId.id] === 'team1' ? 'bet homeTeam': 'homeTeam'
           }
           onClick={e => this.props.bet(match, 'team1')}>
@@ -28,7 +27,6 @@ class MatchCard extends React.Component {
         <div className='vs'>v</div>
         <div
           className={
-            // match.bet === 'team2' ? 'bet awayTeam': 'awayTeam'
             user.bets[match.matchId.id] === 'team2' ? 'bet awayTeam': 'awayTeam'
           }
           onClick={e => this.props.bet(match, 'team2')}>

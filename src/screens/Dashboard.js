@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
         form: ['W', 'W', 'L', 'L', 'L']
       },
     ]
-    console.log(this.props);
     const { schedule, logos } = this.props;
     return (
       <div style={styles.container}>

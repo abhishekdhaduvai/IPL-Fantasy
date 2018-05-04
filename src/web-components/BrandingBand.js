@@ -11,7 +11,7 @@ class BrandingBand extends React.Component {
         <div className='links'>
           <Link to='/home'><div className='link'>Home</div></Link>
           <Link to='/schedule'><div className='link'>Schedule</div></Link>
-          <div className='link'>Results</div>
+          <Link to='/results'><div className='link'>Results</div></Link>
         </div>
       </div>
     )

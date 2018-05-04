@@ -6,6 +6,7 @@ import axios from 'axios';
 import About from './screens/About';
 import Dashboard from './screens/Dashboard';
 import Schedule from './screens/Schedule';
+import Results from './screens/Results';
 
 class App extends Component {
 
@@ -80,6 +81,9 @@ class App extends Component {
               return <Schedule schedule={schedule} bet={this.bet} user={user} />
             }} />
           }
+          <Route exact path="/results" render={() => {
+            return <Results />
+          }} />
           <Route path="/" render={() => {
             return <Redirect to="/home" />
           }}/>

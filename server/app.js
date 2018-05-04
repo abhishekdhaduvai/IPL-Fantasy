@@ -54,6 +54,10 @@ function(request, accessToken, refreshToken, profile, done) {
 		id: profile.id,
 		email: profile.email,
 		name: profile.displayName,
+		bets: {
+			7894: {team: 'team1', result: 'loss'},
+			7895: {team: 'team1', result: 'win'}
+		}
 	}
 	/*
 	 * Create the user if they don't already exist.
@@ -166,7 +170,7 @@ const start = () => {
 
 start();
 
-app.get('/matches', (req, res) => {
+app.get('/finished-matches', (req, res) => {
 	res.send(matches);
 });
 

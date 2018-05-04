@@ -8,7 +8,7 @@ const create = (user) => {
   users[user.id].email = user.email;
   users[user.id].phone = user.phone;
   users[user.id].points = 0;
-  users[user.id].bets = {};
+  users[user.id].bets = user.bets || {};
   users[user.id].form = [];
 }
 

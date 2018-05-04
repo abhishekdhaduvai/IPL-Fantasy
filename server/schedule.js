@@ -33,6 +33,7 @@ const getSchedule = (teams, matches, upcomingMatches) => {
 					upcomingMatches.push(match);
 			}
 			else {
+				matches.push(match);
 				if(match.matchStatus.outcome === 'A') {
 					teams[match.team1.team.abbreviation].form.push('W');
 					teams[match.team2.team.abbreviation].form.push('L');

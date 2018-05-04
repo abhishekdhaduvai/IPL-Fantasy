@@ -92,7 +92,7 @@ thead > tr, tbody {
   box-sizing: border-box;
   width: 20px;
   text-align: center;
-  background: green;
+  background: #4caf50;
   margin: 1px;
   padding: 3px;
   font-size: small;
@@ -104,7 +104,7 @@ thead > tr, tbody {
   box-sizing: border-box;
   width: 20px;
   text-align: center;
-  background: red;
+  background: #F44336;
   margin: 1px;
   padding: 3px;
   font-size: small;
@@ -122,33 +122,34 @@ thead > tr, tbody {
   justify-content: center;
 }
 
-.lock-time {
+.card-left {
   position: absolute;
   left: 1em;
   align-self: center;
-  /* width: 10em; */
 }
 
-.lock-time-msg {
-  font-size: small;
+.card-right {
+  position: absolute;
+  right: 3em;
+  align-self: center;
+  text-align: center;
 }
 
-.lock-time > .time-remaining {
+.points.win {
+  color: #4caf50;
+}
+
+.points.loss {
+  color: #F44336;
+}
+
+.card-right .points {
   font-weight: bold;
+  font-size: x-large;
 }
 
-@media screen and (max-width: 1000) {
-  .lock-time {
-    width: 10em;
-  }
-  .lock-time-msg {
-    font-size: x-small;
-  }
-
-  .lock-time > .time-remaining {
-    font-weight: bold;
-    font-size: small;
-  }
+.card-left .row1 {
+  font-size: small;
 }
 
 .team1 {
@@ -212,6 +213,25 @@ thead > tr, tbody {
 
 .logo.TBC {
   background-position: -45px -135px;
+}
+
+.team {
+  display: flex;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.team.win {
+  color: white;
+  background: #4caf50;
+  border-radius: 2em;
+}
+
+.team.loss {
+  color: white;
+  background: #F44336;
+  border-radius: 2em;
 }
 
 .homeTeam, .awayTeam {
