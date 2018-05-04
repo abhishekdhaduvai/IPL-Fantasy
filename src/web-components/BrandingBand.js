@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class BrandingBand extends React.Component {
   render() {
@@ -7,10 +8,15 @@ class BrandingBand extends React.Component {
         <div style={{padding: '1em'}}>
           <h1 style={{margin: 0}}>IPL Fantasy League</h1>
         </div>
-        <div style={styles.divider}></div>
+        <div className='links'>
+          <Link to='/home'><div className='link'>Home</div></Link>
+          <Link to='/schedule'><div className='link'>Schedule</div></Link>
+          <div className='link'>Results</div>
+        </div>
+        {/* <div style={styles.divider}></div>
         <div style={styles.banner}>
           <h2 style={styles.text}>{this.props.screen}</h2>
-        </div>
+        </div> */}
       </div>
     )
   }
@@ -18,6 +24,8 @@ class BrandingBand extends React.Component {
 
 const styles = {
   container: {
+    display: 'flex',
+    justifyContent: 'space-between',
     color: 'white',
     background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,78,121,1) 0%, rgba(9,33,121,1) 100%)',
   },

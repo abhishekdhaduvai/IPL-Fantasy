@@ -4,8 +4,31 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .content-hero__img {
   height: 100%;
+}
+
+.links {
+  display: flex;
+  font-size: larger;
+  padding-right: 1em;
+  align-items: center;
+}
+
+.link {
+  margin: 0.5em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.link:hover {
+  background: #3F51B5;
+  border-radius: 10px;
 }
 
 table {
