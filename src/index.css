@@ -1,0 +1,196 @@
+/* Add your CSS here */
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.content-hero__img {
+  height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+tbody {
+  max-height: 450px;
+  overflow: scroll;
+}
+
+tr {
+  border-bottom: 1px solid grey;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 0.5em;
+  box-sizing: border-box
+}
+
+th {
+  padding: 1em;
+  color: orange;
+  box-sizing: border-box;
+}
+
+th.name {
+  width: 200px;
+  padding-left: 0.5em;
+}
+
+th.form {
+  width: 122px;
+  text-align: center;
+}
+
+td.id {
+  width: 62px;
+  text-align: center;
+}
+
+td.name {
+  width: 200px;
+}
+
+td.points {
+  width: 57px;
+  text-align: center;
+}
+
+thead > tr, tbody {
+  display: block;
+}
+
+.form.W {
+  box-sizing: border-box;
+  width: 20px;
+  text-align: center;
+  background: green;
+  margin: 1px;
+  padding: 3px;
+  font-size: small;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form.L {
+  box-sizing: border-box;
+  width: 20px;
+  text-align: center;
+  background: red;
+  margin: 1px;
+  padding: 3px;
+  font-size: small;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.match-card {
+  /* padding: 1em; */
+  margin: 1em;
+  margin-bottom: 0.5em;
+  box-shadow: 2px 2px 1rem 1px rgba(120, 120, 120, 0.2);
+
+  display: flex;
+  justify-content: center;
+}
+
+.team1 {
+  width: 15em;
+  text-align: right;
+  font-weight: bold;
+}
+
+.team2 {
+  width: 15em;
+  text-align: left;
+  font-weight: bold;
+}
+
+.team1, .team2, .vs {
+  align-self: center;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  background-image: url('https://www.iplt20.com/resources/ver/i/sprites/tLogo40x-sprite@x2.png');
+  background-size: 175px 175px;
+  margin: 0 0.5em;
+}
+
+.logo.KXIP {
+  background-position: 0px -90px;
+}
+
+.logo.SRH {
+  background-position: 0px -135px;
+}
+
+.logo.MI {
+  background-position: 0px 0px;
+}
+
+.logo.CSK {
+  background-position: -45px 0px;
+}
+
+.logo.RCB {
+  background-position: -135px 0px;
+}
+
+.logo.KKR {
+  background-position: -90px 0px;
+}
+
+.logo.RR {
+  background-position: -135px -90px;
+}
+
+.logo.DD {
+  background-position: 0px -45px;
+}
+
+.logo.TBC {
+  background-position: -45px -135px;
+}
+
+.homeTeam, .awayTeam {
+  display: flex;
+  cursor: pointer;
+  padding: 1em;
+  padding-right: 0;
+  margin-right: 0.5em;
+}
+
+.awayTeam {
+  padding-left: 0;
+  margin-left: 0.5em;
+}
+
+.homeTeam:hover, .homeTeam.bet {
+  color: white;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,33,121,1) 70%);
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.awayTeam:hover, .awayTeam.bet {
+  color: white;
+  background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(9,33,121,1) 70%);
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+px-alert-message {
+  position: absolute;
+  right: 1em;
+  margin-right: 1em;
+  margin-top: 2em;
+}
