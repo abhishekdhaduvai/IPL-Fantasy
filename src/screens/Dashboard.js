@@ -31,7 +31,7 @@ class Dashboard extends React.Component {
       <div style={styles.container}>
         <BrandingBand screen='Home' />
         <img
-          className="content-hero__img" src="https://iplplatform-static-files.s3.amazonaws.com/IPL/photo/2018/05/03/e8f39a52-04f9-4f16-9ab3-4b8aebe43e76/Gill-int.jpg" />
+          className="content-hero__img" src="http://naotw-pd.s3.amazonaws.com/images/IPL-Dhoni.jpg" />
         <PointsTable table={table}/>
       </div>
     )

@@ -23,20 +23,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     color: 'white',
-    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,78,121,1) 0%, rgba(9,33,121,1) 100%)',
+    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,78,121,1) 0%, rgba(9,33,121,0.8) 100%)',
   },
-  banner: {
-    padding: '1em',
-    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,78,121,1) 0%, rgba(9,33,121,1) 100%)',
-  },
-  text: {
-    color: 'white',
-    margin: 0,
-  },
-  divider: {
-    height: '1px',
-    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,33,121,1) 70%)',
-  }
 }
 
 export default BrandingBand;
