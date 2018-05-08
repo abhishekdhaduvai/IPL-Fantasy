@@ -73,7 +73,7 @@ th.id, td.id {
 }
 
 th.name, td.name {
-  width: 200px;
+  width: 230px;
 }
 
 th.points, td.points {
@@ -246,16 +246,14 @@ thead > tr, tbody {
 
 .homeTeam:hover, .homeTeam.bet {
   color: white;
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(9,33,121,1) 70%);
-  border-top-right-radius: 2em;
-  border-bottom-right-radius: 2em;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, #264e88 70%);
+  border-radius: 2em;
 }
 
 .awayTeam:hover, .awayTeam.bet {
   color: white;
-  background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(9,33,121,1) 70%);
-  border-top-left-radius: 2em;
-  border-bottom-left-radius: 2em;
+  background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, #264e88 70%);
+  border-radius: 2em;
 }
 
 px-alert-message {

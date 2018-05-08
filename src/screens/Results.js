@@ -19,7 +19,7 @@ class Results extends React.Component {
   getMatches = () => {
     axios.get('/finished-matches')
     .then(res => {
-      this.setState({ matches: res.data });
+      this.setState({ matches: res.data.reverse() });
     })
     .catch(err => {
       console.log('err ', err);
@@ -38,7 +38,6 @@ class Results extends React.Component {
 
   render(){
     const { matches, user } = this.state;
-    console.log(this.state);
     return (
       <div style={styles.container}>
         <BrandingBand />

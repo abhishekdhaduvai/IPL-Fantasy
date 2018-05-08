@@ -7,7 +7,6 @@ class ResultMatchCard extends React.Component {
 
   render() {
     const { match, user } = this.props;
-    console.log(user.bets[match.matchId.id]);
     return (
       <div className='match-card'>
 
@@ -17,7 +16,7 @@ class ResultMatchCard extends React.Component {
             {
               user.bets[match.matchId.id] === undefined ?
               <span>You did not bet on this match</span> :
-              user.bets[match.matchId.id] === 'team1' ?
+              user.bets[match.matchId.id].team === 'team1' ?
               <span>You bet on <strong>{match.team1.team.shortName}</strong></span> :
               <span>You bet on <strong>{match.team2.team.shortName}</strong></span>
             }
@@ -28,7 +27,7 @@ class ResultMatchCard extends React.Component {
           <div className='card-right'>
             <div>Points</div>
             <div className={'points '+user.bets[match.matchId.id].result}>
-              {user.bets[match.matchId.id].result === 'win' ? <span>+3</span> : -3}
+              {user.bets[match.matchId.id].result === 'win' ? <span>+5</span> : -3}
             </div>
           </div>
         }

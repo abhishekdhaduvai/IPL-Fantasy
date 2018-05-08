@@ -18,7 +18,9 @@ class MatchCard extends React.Component {
         }
         <div
           className={
-            user.bets[match.matchId.id] === 'team1' ? 'bet homeTeam': 'homeTeam'
+            user.bets[match.matchId.id] !== undefined ?
+              user.bets[match.matchId.id].team === 'team1' ? 'bet homeTeam': 'homeTeam'
+            : 'homeTeam'
           }
           onClick={e => this.props.bet(match, 'team1')}>
           <div className='team1'>{match.team1.team.fullName}</div>
@@ -27,7 +29,9 @@ class MatchCard extends React.Component {
         <div className='vs'>v</div>
         <div
           className={
-            user.bets[match.matchId.id] === 'team2' ? 'bet awayTeam': 'awayTeam'
+            user.bets[match.matchId.id] !== undefined ?
+              user.bets[match.matchId.id].team === 'team2' ? 'bet awayTeam': 'awayTeam'
+            : 'awayTeam'
           }
           onClick={e => this.props.bet(match, 'team2')}>
           <div className={'logo '+match.team2.team.abbreviation} />

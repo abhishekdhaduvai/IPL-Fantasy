@@ -5,6 +5,10 @@ class PointsTable extends React.Component {
 
   render(){
     const { table } = this.props;
+    table.sort((a, b) => {
+      return b.points - a.points;
+    });
+
     return (
       <div style={styles.container}>
         <table>
@@ -12,18 +16,20 @@ class PointsTable extends React.Component {
             <tr>
               <th className='id'>Pos</th>
               <th className='name' style={{textAlign: 'left'}}>Player</th>
+              <th className='played'>Pld</th>
               <th className='points'>Pts</th>
-              <th className='form'>Form</th>
+              <th className='form'>Last 5 Games</th>
             </tr>
           </thead>
           <tbody>
             {table.map((player, pos) => (
               <tr key={pos}>
                 <td className='id'>{pos+1}</td>
-                <td className='name'>{player.name}</td>
+                <td className='name'>{player.name ||  player.email}</td>
+                <td className='points'>{player.form.length}</td>
                 <td className='points'>{player.points}</td>
                 <td style={{display: 'flex'}}>
-                  {player.form.reverse().slice(0,5).map((res, i) => (
+                  {player.form.slice(player.form-5).map((res, i) => (
                     <div key={i} className={'form '+res}>{res}</div>
                   ))}
                 </td>

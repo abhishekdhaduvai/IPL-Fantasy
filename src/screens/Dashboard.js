@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
 
   render() {
     const { table } = this.state;
-    console.log(this.state);
     return (
       <div style={styles.container}>
         <BrandingBand screen='Home' />

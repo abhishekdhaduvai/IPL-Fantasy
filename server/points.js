@@ -12,7 +12,7 @@ const calculatePoints = (matches) => {
           if(match.matchStatus.outcome === 'A') {
             if(User.users[id].bets[match.matchId.id].team === 'team1') {
               User.users[id].bets[match.matchId.id].result = 'win';
-              User.users[id].points += 3;
+              User.users[id].points += 5;
               User.users[id].form.push('W');
             } else {
               User.users[id].bets[match.matchId.id].result = 'loss';

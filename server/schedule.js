@@ -1,7 +1,7 @@
 const axios = require('axios');
 const moment = require('moment-timezone');
 
-const getSchedule = (teams, matches, upcomingMatches) => {
+const getSchedule = (matches, upcomingMatches) => {
 
   // if running locally, set up proxies from local config file:
   var node_env = process.env.node_env || 'development';
@@ -34,19 +34,6 @@ const getSchedule = (teams, matches, upcomingMatches) => {
 			}
 			else {
 				matches.push(match);
-				if(match.matchStatus.outcome === 'A') {
-					teams[match.team1.team.abbreviation].form.push('W');
-					teams[match.team2.team.abbreviation].form.push('L');
-					teams[match.team1.team.abbreviation].points += 2;
-				}
-				else if(match.matchStatus.outcome === 'B') {
-					teams[match.team1.team.abbreviation].form.push('L');
-					teams[match.team2.team.abbreviation].form.push('W');
-					teams[match.team2.team.abbreviation].points += 2;
-				}
-				else {
-					// console.log(match)
-				}
 			}
 		});
 	})
