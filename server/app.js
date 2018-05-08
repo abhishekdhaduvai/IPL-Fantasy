@@ -166,7 +166,8 @@ app.get('/me', (req, res) => {
 
 app.post('/bet', (req, res) => {
 	req.body.userId = req.user.id;
-	User.addBet(req.body, res);
+	User.addBet(req.body)
+	res.send('Bet Updated');
 });
 
 app.get('/update-users', (req, res) => {

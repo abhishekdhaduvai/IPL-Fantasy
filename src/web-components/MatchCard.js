@@ -10,9 +10,9 @@ class MatchCard extends React.Component {
       <div className='match-card'>
         {match.timeUTC - Date.now() > 0 &&
           <div className='card-left'>
-            <div className='row1'>Selection for this match will close in</div>
+            <div className='row1'>Selection for this match will close</div>
             <div className='row2'>
-              <strong>{moment(match.timeUTC - 60*60*1000).countdown().toString().split('and')[0].trim()}</strong>
+              <strong>{moment(match.timeUTC - 60*60*1000).fromNow()}</strong>
             </div>
           </div>
         }

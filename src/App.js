@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
@@ -44,28 +45,33 @@ class App extends Component {
 
   bet = (match, team) => {
     const { schedule } = this.state;
-    this.setState(state => {
-      return {
-        ...state,
-        schedule: schedule.map(game => {
-          return game.matchId.id === match.matchId.id ? {
-            ...game,
-            bet: game.bet === team ? '' : team
-          } : game
-        })
-      }
-    });
-    axios.post('/bet', {
-      match: match.matchId.id,
-      bet: team
-    })
-    .then(res => {
-      this.getUserInfo();
-    })
-    .catch(err => {
-      console.log('err ', err);
-      this.setState({ error: err.message});
-    })
+    this.setState({ error: false });
+    if(match.timeUTC > Date.now() + 60*60*1000) {
+      this.setState(state => {
+        return {
+          ...state,
+          schedule: schedule.map(game => {
+            return game.matchId.id === match.matchId.id ? {
+              ...game,
+              bet: game.bet === team ? '' : team
+            } : game
+          })
+        }
+      });
+      axios.post('/bet', {
+        match: match.matchId.id,
+        bet: team
+      })
+      .then(res => {
+        this.getUserInfo();
+      })
+      .catch(err => {
+        console.log('err ', err);
+        this.setState({ error: err.message});
+      });
+    } else {
+      this.setState({ error: 'You cannot bet on this match anymore' });
+    }
   }
 
   render() {

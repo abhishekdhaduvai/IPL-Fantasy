@@ -49,10 +49,11 @@ const updateUserDB = (userId) => {
     TableName: 'FantasyUsers',
     ReturnConsumedCapacity: 'TOTAL',
   };
+
   let Item = {
     id: {S: users[userId].id},
     email: {S: users[userId].email},
-    name: {S: users[userId].name},
+    name: {S: users[userId].name || users[userId].email},
     points: {N: users[userId].points.toString()},
     bets: {M: {}}
   }
@@ -67,11 +68,30 @@ const updateUserDB = (userId) => {
   params.Item = Item;
 
   dynamodb.putItem(params, (err, data) => {
-    if(err) console.log(err);
-    else {
-      console.log(data);
+    if(err) {
+      console.log(err);
+      console.log(params);
+      return false;
     }
-  })
+    else {
+      return true;
+    }
+  });
+}
+
+const addBet = (bet) => {
+  if(!users[bet.userId].bets[bet.match]) {
+    users[bet.userId].bets[bet.match] = {};
+    users[bet.userId].bets[bet.match].team = bet.bet;
+  } else {
+    if(users[bet.userId].bets[bet.match].team === bet.bet)
+      users[bet.userId].bets[bet.match].team = '';
+    else
+      users[bet.userId].bets[bet.match].team = bet.bet;
+  }
+
+  // Update the DB on AWS
+  return updateUserDB(bet.userId);
 }
 
 const reset = () => {
@@ -96,21 +116,6 @@ const findOrCreate = (user) => {
   if(users[user.id] === undefined) {
     create(user);
   }
-}
-
-const addBet = (bet) => {
-  if(!users[bet.userId].bets[bet.match]) {
-    users[bet.userId].bets[bet.match] = {};
-    users[bet.userId].bets[bet.match].team = bet.bet;
-  } else {
-    if(users[bet.userId].bets[bet.match].team === bet.bet)
-      users[bet.userId].bets[bet.match].team = '';
-    else
-      users[bet.userId].bets[bet.match].team = bet.bet;
-  }
-
-  // Update the DB on AWS
-  updateUserDB(bet.userId);
 }
 
 getUsers();
