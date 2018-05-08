@@ -29,7 +29,7 @@ const getSchedule = (matches, upcomingMatches) => {
 				 * If current UTC time is less than the match date (in UTC), the match has already started
 				 * and it should not be displayed in the schedule.
 				 */
-				if(IST.utc() > moment())
+				if(IST.utc() > (moment() + 60*60*1000))
 					upcomingMatches.push(match);
 			}
 			else {

@@ -1,5 +1,6 @@
 {
   "development": {
-    "api": "http://datacdn.iplt20.com/dynamic/data/core/cricket/2012/ipl2018/matchSchedule2.js"
+    "api": "http://datacdn.iplt20.com/dynamic/data/core/cricket/2012/ipl2018/matchSchedule2.js",
+    "callback": "/auth/google/callback"
   }
 }

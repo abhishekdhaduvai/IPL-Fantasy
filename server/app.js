@@ -19,14 +19,21 @@ var invitedUsers = require('./invitedUsers');
 const app = express();
 const httpServer = http.createServer(app);
 
+// if running locally, set up proxies from local config file:
+var node_env = process.env.node_env || 'development';
+if (node_env === 'development') {
+  var devConfig = require('./localConfig.json')[node_env];
+}
+
 app.set('trust proxy', 1);
 app.enable("trust proxy");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 var sessionOptions = {
   secret: credentials.session.secret,
-  name: credentials.session.name,
-  maxAge: 60 * 60 * 1000,  // expire token after 60 min.
+	name: credentials.session.name,
+	// expire token after 59 min. This is because bets can be changed 1hr before match start
+  maxAge: 59 * 60 * 1000,
   proxy: true,
   resave: true,
   saveUninitialized: true
@@ -56,13 +63,12 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
 	clientID: credentials.google.clientId,
 	clientSecret: credentials.google.secret,
-	callbackURL: 	'https://ipl-fantasy-app.run.aws-usw02-pr.ice.predix.io/auth/google/callback',
+	callbackURL: 	devConfig ? devConfig.callback : 'https://ipl-fantasy-app.run.aws-usw02-pr.ice.predix.io/auth/google/callback',
 	passReqToCallback: true,
 	proxy: true
 },
 function(request, accessToken, refreshToken, profile, done) {
 	// console.log('user id', JSON.stringify(profile, null, 2));
-
 	const user = {
 		id: profile.id,
 		email: profile.email,
@@ -75,7 +81,6 @@ function(request, accessToken, refreshToken, profile, done) {
 	if(invitedUsers.indexOf(profile.email) !== -1) {
 		User.findOrCreate(user);
 	}
-
 	return done(null, user);
 }
 ));
@@ -113,12 +118,6 @@ app.use('/',
 	isAuthenticated,
 	express.static(path.join(__dirname, process.env['base-dir'] ? process.env['base-dir'] : '../'))
 );
-
-// if running locally, set up proxies from local config file:
-var node_env = process.env.node_env || 'development';
-if (node_env === 'development') {
-  var devConfig = require('./localConfig.json')[node_env];
-}
 
 var matches = [];
 var upcomingMatches = [];
@@ -167,8 +166,7 @@ app.get('/me', (req, res) => {
 
 app.post('/bet', (req, res) => {
 	req.body.userId = req.user.id;
-	User.addBet(req.body);
-	res.send('Done.');
+	User.addBet(req.body, res);
 });
 
 app.get('/update-users', (req, res) => {
