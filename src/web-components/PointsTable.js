@@ -29,7 +29,7 @@ class PointsTable extends React.Component {
                 <td className='points'>{player.form.length}</td>
                 <td className='points'>{player.points}</td>
                 <td style={{display: 'flex'}}>
-                  {player.form.slice(player.form-5).map((res, i) => (
+                  {player.form.slice(player.form.length-5).map((res, i) => (
                     <div key={i} className={'form '+res}>{res}</div>
                   ))}
                 </td>
