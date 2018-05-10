@@ -28,6 +28,7 @@ const getUsers = () => {
         users[item.id.S].points = Number(item.points.N);
         users[item.id.S].bets = {};
         users[item.id.S].form = [];
+        users[item.id.S].wins = 0;
 
         // Temporary Object to break down DynamoDB item to JSOn
         let bets = item.bets.M;
@@ -97,6 +98,7 @@ const addBet = (bet) => {
 const reset = () => {
   Object.keys(users).forEach(id => {
     users[id].points = 0;
+    users[id].wins = 0;
     users[id].form = [];
   })
 }
@@ -108,6 +110,7 @@ const create = (user) => {
   users[user.id].email = user.email;
   users[user.id].phone = user.phone;
   users[user.id].points = 0;
+  users[user.id].wins = 0;
   users[user.id].bets = user.bets || {};
   users[user.id].form = [];
 }

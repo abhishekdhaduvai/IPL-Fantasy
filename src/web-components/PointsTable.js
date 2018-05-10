@@ -17,6 +17,7 @@ class PointsTable extends React.Component {
               <th className='id'>Pos</th>
               <th className='name' style={{textAlign: 'left'}}>Player</th>
               <th className='played'>Pld</th>
+              <th className='wins'>Won</th>
               <th className='points'>Pts</th>
               <th className='form'>Last 5 Games</th>
             </tr>
@@ -27,9 +28,10 @@ class PointsTable extends React.Component {
                 <td className='id'>{pos+1}</td>
                 <td className='name'>{player.name ||  player.email}</td>
                 <td className='points'>{player.form.length}</td>
+                <td className='points'>{player.wins}</td>
                 <td className='points'>{player.points}</td>
                 <td style={{display: 'flex'}}>
-                  {player.form.slice(player.form.length-5).map((res, i) => (
+                  {player.form.slice(player.form.length > 5 ? player.form.length-5 : 0).map((res, i) => (
                     <div key={i} className={'form '+res}>{res}</div>
                   ))}
                 </td>

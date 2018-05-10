@@ -150,9 +150,7 @@ app.get('/upcoming-matches', (req, res) => {
 });
 
 app.get('/table', (req, res) => {
-	points.calculatePoints(matches);
-	console.log(User.users);
-	res.send(User.users);
+	res.send(points.calculatePoints(matches));
 	User.reset();
 });
 

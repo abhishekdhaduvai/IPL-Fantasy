@@ -14,6 +14,7 @@ const calculatePoints = (matches) => {
               User.users[id].bets[match.matchId.id].result = 'win';
               User.users[id].points += 5;
               User.users[id].form.push('W');
+              User.users[id].wins++;
             } else {
               User.users[id].bets[match.matchId.id].result = 'loss';
               User.users[id].points -= 3;
@@ -23,8 +24,9 @@ const calculatePoints = (matches) => {
           else if(match.matchStatus.outcome === 'B') {
             if(User.users[id].bets[match.matchId.id].team === 'team2') {
               User.users[id].bets[match.matchId.id].result = 'win';
-              User.users[id].points += 3;
+              User.users[id].points += 5;
               User.users[id].form.push('W');
+              User.users[id].wins++;
             } else {
               User.users[id].bets[match.matchId.id].result = 'loss';
               User.users[id].points -= 3;
@@ -36,6 +38,7 @@ const calculatePoints = (matches) => {
       });
     }
   });
+  return User.users;
 }
 
 module.exports = {
