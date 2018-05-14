@@ -23,17 +23,24 @@ const getSchedule = (matches, upcomingMatches) => {
 		data.schedule.forEach(match => {
 			let IST = moment.tz(match.matchDate, 'Asia/Kolkata');
 			match.timeUTC = IST.utc().valueOf();
-			if(!match.matchStatus) {
-				/*
-				 * Convert IST to UTC time.
-				 * If current UTC time is less than the match date (in UTC), the match has already started
-				 * and it should not be displayed in the schedule.
-				 */
-				if(IST.utc() > (moment() + 60*60*1000))
-					upcomingMatches.push(match);
+			// if(!match.matchStatus) {
+			// 	/*
+			// 	 * Convert IST to UTC time.
+			// 	 * If current UTC time is less than the match date (in UTC), the match has already started
+			// 	 * and it should not be displayed in the schedule.
+			// 	 */
+			// 	if(IST.utc() > (moment() + 60*60*1000))
+			// 		upcomingMatches.push(match);
+			// }
+			// else {
+			// 	matches.push(match);
+			// }
+
+			if(match.matchState === 'L' || match.matchState === 'C') {
+				matches.push(match);
 			}
 			else {
-				matches.push(match);
+				upcomingMatches.push(match);
 			}
 		});
 	})

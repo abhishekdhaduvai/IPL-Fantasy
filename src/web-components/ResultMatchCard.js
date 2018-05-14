@@ -11,7 +11,9 @@ class ResultMatchCard extends React.Component {
       <div className='match-card'>
 
         <div className='card-left'>
-          <div className='.row1'><strong>{match.matchStatus.text}</strong></div>
+          {match.matchStatus &&
+            <div className='.row1'><strong>{match.matchStatus.text}</strong></div>
+          }
           <div className='row2'>
             {
               user.bets[match.matchId.id] === undefined ?
