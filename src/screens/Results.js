@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import BrandingBand from '../web-components/BrandingBand';
 import ResultMatchCard from '../web-components/ResultMatchCard';
+import MatchInProgress from '../web-components/MatchInProgress';
 
 class Results extends React.Component {
 
@@ -42,11 +43,18 @@ class Results extends React.Component {
       <div style={styles.container}>
         <BrandingBand />
         {user !== undefined && matches.map(match => (
-          <ResultMatchCard
-            key={match.matchId.id}
-            match={match}
-            user={user}
-          />
+          <div key={match.matchId.id}>
+            {match.matchStatus ?
+              <ResultMatchCard
+                match={match}
+                user={user}
+              /> :
+              <MatchInProgress
+                match={match}
+                user={user}
+              />
+            }
+          </div>
         ))}
       </div>
     )

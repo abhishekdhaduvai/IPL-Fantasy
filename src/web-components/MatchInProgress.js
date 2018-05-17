@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'countdown';
 import 'moment-countdown';
 
-class ResultMatchCard extends React.Component {
+class MatchInProgress extends React.Component {
 
   render() {
     const { match, user } = this.props;
@@ -11,7 +11,7 @@ class ResultMatchCard extends React.Component {
       <div className='match-card'>
 
         <div className='card-left'>
-          <div className='row1'><strong>{match.matchStatus.text}</strong></div>
+          <div className='row1'><strong>Match in Progress</strong></div>
           <div className='row2'>
             {
               user.bets[match.matchId.id] === undefined ?
@@ -22,15 +22,6 @@ class ResultMatchCard extends React.Component {
             }
           </div>
         </div>
-
-        {user.bets[match.matchId.id] !== undefined &&
-          <div className='card-right'>
-            <div>Points</div>
-            <div className={'points '+user.bets[match.matchId.id].result}>
-              {user.bets[match.matchId.id].result === 'win' ? <span>+5</span> : -3}
-            </div>
-          </div>
-        }
 
         <div
           className={
@@ -62,4 +53,4 @@ const styles = {
   },
 }
 
-export default ResultMatchCard;
+export default MatchInProgress;
