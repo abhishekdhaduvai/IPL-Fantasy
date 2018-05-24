@@ -181,11 +181,11 @@ thead > tr, tbody {
 }
 
 .logo.SRH {
-  background-position: 0px -135px;
+  background-position: -45px -135px;
 }
 
 .logo.MI {
-  background-position: 0px 0px;
+  background-position: -45px -90px;
 }
 
 .logo.CSK {
@@ -209,7 +209,7 @@ thead > tr, tbody {
 }
 
 .logo.TBC {
-  background-position: -45px -135px;
+  background-position: -90px -135px;
 }
 
 .team {
